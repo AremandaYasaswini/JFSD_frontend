@@ -1,0 +1,112 @@
+/* src/css/contact.css */
+body {
+  background: linear-gradient(135deg, #f5f5f5 50%, #ffffff 100%); /* Light gradient background */
+}
+
+.contact-container {
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif; /* Change font to Roboto */
+}
+
+.contact-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5em; /* Larger font size for title */
+  color: #333; /* Darker color for better contrast */
+}
+
+.contact-section {
+  background-color: #ffffff; /* White background for sections */
+  border: 1px solid #ddd; 
+  border-radius: 12px; /* More rounded corners */
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+  transition: transform 0.3s; /* Animation for hover effect */
+}
+
+.contact-section:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+.section-title {
+  margin-top: 0;
+  font-size: 1.8em; /* Increase section title size */
+  color: #8B5B29; /* Earthy color for section titles */
+}
+
+.contact-details p {
+  margin: 10px 0;
+  font-size: 1.1em; /* Slightly larger font size for details */
+}
+
+.social-media-list {
+  list-style-type: none; 
+  padding: 0; 
+  display: flex; 
+  justify-content: center; 
+}
+
+.social-media-list li {
+  margin: 0 15px; 
+}
+
+.social-media-list a {
+  color: #8B5B29; 
+  font-size: 28px; /* Larger icon size */
+  transition: color 0.3s; 
+}
+
+.social-media-list a:hover {
+  color: #D8B84A; /* Change color on hover */
+}
+
+.contact-details {
+  font-weight: 400; /* Regular weight for contact details */
+}
+
+.btn-contact {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8B5B29;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em; /* Bigger button size */
+  text-decoration: none; /* No underline */
+  transition: background-color 0.3s, transform 0.3s; /* Animation */
+  margin-top: 20px; /* Space above button */
+}
+
+.btn-contact:hover {
+  background-color: #D8B84A; /* Change color on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+.social-media-list a {
+  color: #8B5B29; /* Default color for icons */
+  font-size: 28px; /* Size of the icons */
+  transition: color 0.3s; 
+}
+
+.social-media-list a.facebook {
+  color: #3b5998; /* Facebook color */
+}
+
+.social-media-list a.twitter {
+  color: #1DA1F2; /* Twitter color */
+}
+
+.social-media-list a.instagram {
+  color: #C13584; /* Instagram color */
+}
+
+.social-media-list a.linkedin {
+  color: #0077B5; /* LinkedIn color */
+}
+
+.social-media-list a:hover {
+  opacity: 0.8; /* Slightly reduce opacity on hover */
+}
+

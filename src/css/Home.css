@@ -1,0 +1,193 @@
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+.header {
+  background-color: #4CAF50; /* Green color */
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: white; /* Link color */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+nav ul li a:hover {
+  color: #FFA500; /* Orange color on hover */
+}
+
+/* Hero Section Styles */
+.hero {
+  background-image: url('../Images/home.jpeg'); /* Background image */
+  background-size: cover;
+  background-position: center;
+  height: 60vh; /* Hero section height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Text color */
+  text-align: center;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Button Styles */
+.explore-btn,
+.cta-btn {
+  background-color: #FFA500; /* Orange color */
+  color: white; /* Text color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.explore-btn:hover,
+.cta-btn:hover {
+  background-color: #FF8C00; /* Darker orange on hover */
+}
+
+/* Features Section Styles */
+.features {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.feature-cards {
+  display: flex;
+  justify-content: space-around; /* Even spacing */
+  margin-top: 20px;
+}
+
+.feature-card {
+  background: #f9f9f9; /* Light background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  width: 30%; /* Card width */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.feature-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Testimonials Section Styles */
+.testimonials {
+  background-color: #f0f0f0; /* Light gray background */
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Call-to-Action Section Styles */
+.cta {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* Text color */
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* Text color */
+  text-align: center;
+  padding: 10px 0;
+}
+
+.social-links a {
+  color: white; /* Link color */
+  margin: 0 10px;
+  text-decoration: none; /* No underline */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.social-links a:hover {
+  color: #FFA500; /* Orange color on hover */
+}
+
+/* Dark Heading Styles */
+.dark-heading {
+  color: white; /* White color for headings */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feature-cards {
+      flex-direction: column; /* Stack cards vertically */
+      align-items: center; /* Center alignment */
+  }
+
+  .feature-card {
+      width: 90%; /* Full width on smaller screens */
+      margin-bottom: 20px; /* Space between cards */
+  }
+
+  .hero {
+      height: 40vh; /* Adjust hero height for smaller screens */
+  }
+
+  nav ul li {
+      margin-right: 10px; /* Reduced margin for smaller screens */
+  }
+}
+.social-media-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between icons */
+  padding: 20px 0; /* Padding for top and bottom */
+}
+
+.social-media-icon {
+  text-align: center; /* Center align text */
+}
+
+.social-media-icon a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit color from parent */
+}
+
+.facebook-icon {
+  color: #3b5998; /* Facebook blue */
+  font-size: 2.5rem; /* Size of the icon */
+}
+
+.twitter-icon {
+  color: #1da1f2; /* Twitter blue */
+  font-size: 2.5rem;
+}
+
+.instagram-icon {
+  color: #c32aa3; /* Instagram pink */
+  font-size: 2.5rem;
+}
+
+.social-media-icon p {
+  margin-top: 8px; /* Space between icon and text */
+  font-weight: bold; /* Bold text for the app name */
+}

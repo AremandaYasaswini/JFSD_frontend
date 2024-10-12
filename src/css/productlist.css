@@ -1,0 +1,101 @@
+/* Container to center and organize content */
+.container {
+  max-width: 1200px; /* Limit width to a reasonable size */
+  margin: 0 auto; /* Center container */
+  padding: 20px; /* Padding inside the container */
+  background-color: #fff; /* White background for contrast */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Product row layout */
+.product-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px; /* Add spacing between cards */
+}
+
+/* Individual product card */
+.fixed-card {
+  width: 25%; /* Fixed size for the cards */
+  margin-bottom: 15px; /* Reduced margin at the bottom */
+  background-color: #FAF3E0; /* Light cream background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Padding inside */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for the card */
+.fixed-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Image within the card */
+.card-img-top {
+  height: 150px; /* Smaller image height */
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 8px; /* Rounded corners for images */
+}
+
+/* Aligns content towards the bottom */
+.mt-auto {
+  margin-top: auto;
+}
+
+/* Button styles */
+.btn-primary, .btn-success {
+  background-color: #8B5B29; /* Brown color */
+  color: #FFF; /* White text for contrast */
+  border: none;
+  padding: 12px 20px; /* Increased padding */
+  border-radius: 4px;
+  font-size: 1.1em; /* Larger text */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.btn-primary:hover, .btn-success:hover {
+  background-color: #D8B84A; /* Lighter shade on hover */
+  color: #FFF; /* Keep white text on hover */
+}
+
+/* Product name and price */
+.product-name {
+  font-size: 1.5em; /* Large text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #4B3D28; /* Dark chocolate color */
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.product-name:hover {
+  color: #D8B84A; /* Gold color on hover */
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.product-price {
+  font-size: 1.2em; /* Slightly smaller for price */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  color: #4B3D28; /* Same dark color */
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.product-price:hover {
+  color: #D8B84A; /* Gold on hover */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fixed-card {
+    width: 48%; /* Two cards per row for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .fixed-card {
+    width: 100%; /* Full width for small screens */
+  }
+}

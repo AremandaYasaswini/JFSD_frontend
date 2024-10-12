@@ -1,0 +1,112 @@
+/* Common Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.login-container, .signup-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Image Section */
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image-section img {
+  width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the area */
+}
+
+/* Form Section */
+.form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the form vertically */
+  align-items: center; /* Center the form horizontally */
+  padding: 20px;
+  background-color: #F9F9F9; /* Light background for the form */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for form */
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px; /* Increased spacing */
+  width: 100%; /* Full width */
+}
+
+label {
+  display: block;
+  margin-bottom: 10px; /* Increased spacing */
+  font-size: 1.2em; /* Increased font size */
+}
+
+input {
+  width: 100%; /* Full width */
+  padding: 15px; /* Increased padding */
+  font-size: 1.1em; /* Increased font size */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: #8B5B29; /* Earthy brown color */
+  color: white;
+  padding: 15px; /* Increased padding */
+  font-size: 1.1em; /* Increased font size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Full width */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.submit-btn:hover {
+  background-color: #D8B84A; /* Lighter yellow on hover */
+}
+/* Register Link */
+.register-link {
+  margin-top: 20px; /* Spacing from the form */
+  font-size: 1em; /* Font size for the text */
+  color: #333; /* Text color */
+  text-align: center; /* Center the text */
+}
+
+.register-link-text {
+  color: #8B5B29; /* Same color as the submit button */
+  font-weight: bold; /* Make it stand out */
+  cursor: pointer; /* Pointer cursor for the clickable text */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.register-link-text:hover {
+  color: #D8B84A; /* Change color on hover, consistent with the button */
+}
+.login-link {
+  margin-top: 20px; /* Spacing above the link */
+}
+
+.login-link-text {
+  color: #8B5B29; /* Same color as your submit button */
+  font-weight: bold;
+  cursor: pointer; /* Make it look like a link */
+  text-decoration: none; /* Optional: underline it like a link */
+  transition: color 0.3s ease;
+}
+
+.login-link-text:hover {
+  color: #D8B84A; /* Change color on hover */
+}

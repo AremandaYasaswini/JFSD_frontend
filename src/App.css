@@ -1,0 +1,122 @@
+/* Reset default margins and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth; /* Smooth scrolling for internal links */
+}
+
+/* Main app container */
+.App {
+  text-align: center; /* Center all text in the App */
+}
+
+/* Header styles */
+.App-header {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32); /* Green gradient background */
+  padding: 15px 0; /* Increased padding for header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: sticky; /* Fix header at the top */
+  top: 0;
+  z-index: 10;
+}
+
+/* Navigation styles */
+nav ul {
+  list-style-type: none; /* Remove bullet points from list */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  overflow: hidden; /* Clear floats */
+}
+
+nav ul li {
+  display: inline; /* Display list items inline */
+  margin-right: 20px; /* Space between menu items */
+}
+
+nav ul li a {
+  color: white; /* White text for links */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Bold text */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+nav ul li a:hover {
+  color: #FFEB3B; /* Change color on hover */
+}
+
+/* Hero section styles */
+.hero-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./Images/bg_1.png'); /* Add a dark gradient overlay */
+  background-size: cover; /* Cover the entire section */
+  background-position: center; /* Center the background image */
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  color: white; /* White text color */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Add subtle text shadow */
+}
+
+/* Content within hero section */
+.hero-content {
+  background: rgba(0, 0, 0, 0.6); /* Darker semi-transparent black background */
+  padding: 30px; /* Increased padding */
+  border-radius: 15px; /* Smoother rounded corners */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+  max-width: 600px; /* Limit content width */
+  text-align: center; /* Center the content */
+}
+
+/* Get Started button styles */
+.get-started-btn {
+  background-color: #FFA500; /* Orange background for button */
+  color: white; /* White text color */
+  padding: 12px 24px; /* Padding around button text */
+  border: none; /* No border */
+  border-radius: 50px; /* Full-rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 1.4em; /* Larger text size */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth background color and transform transition */
+  margin-top: 20px; /* Space above the button */
+  text-decoration: none; /* Remove underline */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15); /* Subtle box shadow */
+}
+
+.get-started-btn:hover {
+  background-color: #FF8C00; /* Darker orange on hover */
+  transform: scale(1.1); /* Increase size on hover */
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+/* Heading styles */
+.dark-heading {
+  color: white; /* White color for dark headings */
+  margin-bottom: 30px; /* Space below heading */
+  font-size: 2.5em; /* Larger font size for emphasis */
+  font-weight: bold;
+  text-align: center; /* Center align heading */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Text shadow for extra emphasis */
+}
+
+/* Additional styles for paragraphs or other text */
+.hero-content p {
+  margin-bottom: 20px; /* Space below each paragraph */
+  line-height: 1.6; /* Improved line height for readability */
+  color: white; /* White text for paragraph */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .get-started-btn {
+    width: 100%; /* Full width button on small screens */
+  }
+  
+  .hero-content {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .dark-heading {
+    font-size: 1.8em; /* Smaller heading on small screens */
+  }
+}
