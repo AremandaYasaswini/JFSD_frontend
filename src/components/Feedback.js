@@ -12,7 +12,6 @@ const FeedbackForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., API call)
     setSuccess(true);
   };
 

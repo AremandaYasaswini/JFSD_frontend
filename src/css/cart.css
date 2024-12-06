@@ -113,3 +113,34 @@ h1 {
       width: 100%; /* Full width for mobile */
   }
 }
+/* Quantity Control Styles */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Add space between buttons and quantity */
+  margin-top: 10px; /* Add some spacing from other elements */
+}
+
+.quantity-control button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quantity-control button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.quantity-control span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  padding: 0 10px; /* Space around the quantity number */
+}

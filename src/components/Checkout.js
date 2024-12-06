@@ -26,7 +26,6 @@ const CheckoutForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Navigate to order summary with product and form data
     navigate('/order-summary', { state: { product, formData } });
   };
 

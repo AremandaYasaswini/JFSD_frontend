@@ -1,30 +1,36 @@
-// src/components/Navbar.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from React Router
-import { useCart } from './CartContext'; // Import the useCart hook
-import '../css/Navbar.css'; // Adjust the path if needed
-import logoImage from '../Images/logo.png'; // Replace with the actual path to your logo image
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; 
+import { useCart } from './CartContext'; 
+import '../css/Navbar.css'; 
+import logoImage from '../Images/logo.png'; 
+import LoginLogoutButton from './LoginLogoutButton';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { cart } = useCart(); // Access the cart from context
+  const { cart } = useCart(); 
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev); // Simplified toggle
+    setIsSidebarOpen(prev => !prev); 
   };
 
   const closeSidebar = () => {
-    setIsSidebarOpen(false); // Close sidebar
+    setIsSidebarOpen(false); 
   };
 
   return (
     <div className="navbar-container">
       {/* Top Navigation */}
       <nav className="top-nav">
-        <button className="toggle-button" onClick={toggleSidebar}>☰</button>
         <div className="logo-container">
+          <button className="toggle-button" onClick={toggleSidebar}>☰</button>
           <img src={logoImage} alt="HarvestHaven Logo" className="logo" />
           <span className="logo-text">HarvestHaven</span>
+        </div>
+
+        {/* Display Login or Logout Button */}
+        <div className="navbar-right">
+          <LoginLogoutButton />
         </div>
       </nav>
 
@@ -32,16 +38,15 @@ const Navbar = () => {
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <button className="close-button" onClick={toggleSidebar}>✖</button>
         <ul>
-          <li onClick={closeSidebar}><Link to="/home">Home</Link></li>
+          <li onClick={closeSidebar}><Link to="/">Home</Link></li>
           <li onClick={closeSidebar}><Link to="/products">Products</Link></li>
           <li onClick={closeSidebar}><Link to="/blog">Blog</Link></li>
-          <li onClick={closeSidebar}><Link to="/login">Login</Link></li>
           <li onClick={closeSidebar}><Link to="/contact">Contact</Link></li>
           <li onClick={closeSidebar}>
             <Link to="/cart">Cart ({cart.length})</Link>
           </li>
           <li onClick={closeSidebar}><Link to="/orders">Orders</Link></li>
-          <li onClick={closeSidebar}><Link to="/feedback">Feedback</Link></li> {/* Corrected position */}
+          <li onClick={closeSidebar}><Link to="/feedback">Feedback</Link></li> 
         </ul>
       </aside>
     </div>

@@ -1,6 +1,5 @@
-// src/Products.js
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate for navigation
+import { useNavigate } from 'react-router-dom'; 
 import '../css/products.css';
 import fruitsImg from '../Images/Fruits.jpeg';
 import vegetablesImg from '../Images/vegetables.jpeg';
@@ -8,50 +7,21 @@ import leafyVeggiesImg from '../Images/leafy_vegetables.jpeg';
 import milletsImg from '../Images/millets.jpeg';
 import pulsesImg from '../Images/pulses.jpeg';
 import nutsImg from '../Images/nuts.jpeg';
+
 const Products = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const categories = [
-    {
-      name: "Fruits",
-      description: "Fresh and delicious fruits from local farms.",
-      image: fruitsImg, 
-      path: "/products/fruits",
-    },
-    {
-      name: "Vegetables",
-      description: "A variety of seasonal vegetables, picked at their peak.",
-      image: vegetablesImg, // Use imported image
-      path: "/products/vegetables",
-    },
-    {
-      name: "Leafy Greens",
-      description: "Nutritious leafy greens that are fresh and flavorful.",
-      image: leafyVeggiesImg, // Use imported image
-      path: "/products/leafy_greens",
-    },
-    {
-      name: "Millets",
-      description: "Healthy and sustainable grain options for a balanced diet.",
-      image: milletsImg, // Use imported image
-      path: "/products/millets",
-    },
-    {
-      name: "Pulses",
-      description: "High-protein pulses, perfect for a healthy meal.",
-      image: pulsesImg, // Use imported image
-      path: "/products/pulses",
-    },
-    {
-      name: "Nuts",
-      description: "Wholesome and crunchy nuts for a nutritious snack or meal enhancement.",
-      image: nutsImg, // Use imported image
-      path: "/products/nuts",
-    },
+    { name: "Fruits", description: "Fresh and delicious fruits from local farms.", image: fruitsImg },
+    { name: "Vegetables", description: "A variety of seasonal vegetables, picked at their peak.", image: vegetablesImg },
+    { name: "Leafy Vegetables", description: "Nutritious leafy greens that are fresh and flavorful.", image: leafyVeggiesImg },
+    { name: "Millets", description: "Healthy and sustainable grain options for a balanced diet.", image: milletsImg },
+    { name: "Pulses", description: "High-protein pulses, perfect for a healthy meal.", image: pulsesImg },
+    { name: "Nuts", description: "Wholesome and crunchy nuts for a nutritious snack or meal enhancement.", image: nutsImg },
   ];
 
-  const handleViewProducts = (path) => {
-    navigate(path); // Navigate to the specific category page
+  const handleViewProducts = (categoryName) => {
+    navigate(`/products/${categoryName}`);
   };
 
   return (
@@ -66,7 +36,7 @@ const Products = () => {
               <p className="product-description">{category.description}</p>
               <button 
                 className="view-products-btn" 
-                onClick={() => handleViewProducts(category.path)}
+                onClick={() => handleViewProducts(category.name)}
               >
                 View Products
               </button>

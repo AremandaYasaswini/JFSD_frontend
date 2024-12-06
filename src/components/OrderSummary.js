@@ -14,12 +14,12 @@ const OrderSummary = () => {
   }
 
   const handlePlaceOrder = () => {
-    const order = { product, formData }; // Ensure this is an object
+    const order = { product, formData }; 
 
-    addOrder(order); // Add order to context
+    addOrder(order); 
 
     alert('Order placed successfully!');
-    navigate('/orders'); // Navigate to orders page
+    navigate('/orders');
   };
 
   return (

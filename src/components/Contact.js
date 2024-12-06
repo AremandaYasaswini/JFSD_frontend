@@ -22,22 +22,22 @@ const Contact = () => {
         <p>Stay connected with us through social media:</p>
         <ul className="social-media-list">
           <li>
-            <a href="https://www.facebook.com/yourcompany" target="_blank" rel="noopener noreferrer" className="facebook">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="facebook">
               <i className="fab fa-facebook-f"></i> Facebook
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com/yourcompany" target="_blank" rel="noopener noreferrer" className="twitter">
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="twitter">
               <i className="fab fa-twitter"></i> Twitter
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/yourcompany" target="_blank" rel="noopener noreferrer" className="instagram">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="instagram">
               <i className="fab fa-instagram"></i> Instagram
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/company/yourcompany" target="_blank" rel="noopener noreferrer" className="linkedin">
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="linkedin">
               <i className="fab fa-linkedin-in"></i> LinkedIn
             </a>
           </li>

@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Home.css';
 import fruitsImg from '../Images/Fruits.jpeg';
 import vegetablesImg from '../Images/vegetables.jpeg';
-import leafyVeggiesImg from '../Images/leafy_vegetables.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'; // Import the specific icons
-import { faAppleAlt, faCarrot, faLeaf } from '@fortawesome/free-solid-svg-icons'; // Import additional icons for products
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'; 
+import { faAppleAlt, faCarrot, faRocket } from '@fortawesome/free-solid-svg-icons'; // Added rocket icon for new launch
+import '../css/Home.css';
 
 function Home() {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ function Home() {
           <h1 className="dark-heading">Empowering Farmers, Enriching Lives</h1>
           <p>Join us in transforming agriculture with innovative solutions.</p>
           <button className="explore-btn" onClick={() => navigate('/products')}>
-            <FontAwesomeIcon icon={faLeaf} /> Explore Now
+            <FontAwesomeIcon icon={faRocket} /> Explore Now
           </button>
         </div>
       </section>
@@ -53,10 +52,11 @@ function Home() {
             <h3><FontAwesomeIcon icon={faCarrot} /> Farm-Fresh Vegetables</h3>
             <p>Enjoy a variety of seasonal vegetables picked at their peak.</p>
           </div>
-          <div className="feature-card" onClick={() => handleProductNavigation('leafy_greens')}>
-            <img src={leafyVeggiesImg} alt="Leafy Greens" />
-            <h3><FontAwesomeIcon icon={faLeaf} /> Leafy Greens</h3>
-            <p>Nutritious leafy greens that are fresh and flavorful.</p>
+          {/* Updated to reference image from public folder */}
+          <div className="feature-card" onClick={() => handleProductNavigation('New Launch')}>
+            <img src="/Images/new_launch.jpeg" alt="New Launch" />
+            <h3><FontAwesomeIcon icon={faRocket} /> New Launch</h3>
+            <p>Exciting new products just launched, explore the latest arrivals.</p>
           </div>
         </div>
       </section>
@@ -64,7 +64,7 @@ function Home() {
       <section className="cta">
         <h2>Ready to Get Started?</h2>
         <button className="cta-btn" onClick={handleSignUp}>
-          <FontAwesomeIcon icon={faLeaf} /> Sign Up Now
+          <FontAwesomeIcon icon={faRocket} /> Sign Up Now
         </button>
       </section>
 

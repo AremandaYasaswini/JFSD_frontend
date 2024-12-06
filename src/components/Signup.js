@@ -1,20 +1,39 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import '../css/Form.css'; // Adjust the path if needed
-import signupImage from '../Images/register_1.jpeg'; // Replace with your image path
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import '../css/Form.css'; 
+import signupImage from '../Images/register_1.jpeg'; 
 
 const Signup = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    role: 'BUYER'  // Default role, you can modify this if necessary
+  });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission
-    // Add your signup logic here (e.g., API call)
-    navigate('/login'); // Redirect to login page after sign up
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
-  const handleLoginRedirect = () => {
-    navigate('/login'); // Redirect to login page when 'Login here' is clicked
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('http://localhost:8080/users/signup', formData);
+        if (response.status === 200 || response.status === 201) {
+            alert('Signup successful!');
+            navigate('/login'); // Redirect to login page
+        }
+    } catch (err) {
+        setError(err.response?.data?.message || 'An error occurred');
+    }
+};
+
 
   return (
     <div className="signup-container">
@@ -23,27 +42,60 @@ const Signup = () => {
       </div>
       <div className="form-section">
         <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}> {/* Call handleSubmit on form submit */}
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username:</label>
-            <input type="text" id="username" required />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
-            <input type="password" id="password" required />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="role">Role:</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="BUYER">Buyer</option>
+              <option value="FARMER">Farmer</option>
+            </select>
           </div>
           <button type="submit" className="submit-btn">Sign Up</button>
         </form>
-
-        {/* "Already a member? Login here" section */}
+        {error && <p className="error-message">{error}</p>}
         <div className="login-link">
           <p>
             Already a member?{' '}
-            <span className="login-link-text" onClick={handleLoginRedirect}>
+            <span className="login-link-text" onClick={() => navigate('/login')}>
               Login here
             </span>
           </p>
