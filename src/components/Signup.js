@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../css/Form.css'; 
-import signupImage from '../Images/register_1.jpeg'; 
+import '../css/Form.css';
+import signupImage from '../Images/register_1.jpeg';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
-    role: 'BUYER'  // Default role, you can modify this if necessary
+    role: 'BUYER'
   });
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,16 +23,17 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:8080/users/signup', formData);
-        if (response.status === 200 || response.status === 201) {
-            alert('Signup successful!');
-            navigate('/login'); // Redirect to login page
-        }
+      const response = await axios.post('http://localhost:8080/users/signup', formData);
+      if (response.status === 200 || response.status === 201) {
+        alert('Signup successful!');
+        navigate('/login');
+      }
     } catch (err) {
-        setError(err.response?.data?.message || 'An error occurred');
+      // Do nothing when an error occurs
+      // You can optionally log the error to the console for debugging
+      console.error("Signup error:", err);
     }
-};
-
+  };
 
   return (
     <div className="signup-container">
@@ -91,7 +91,6 @@ const Signup = () => {
           </div>
           <button type="submit" className="submit-btn">Sign Up</button>
         </form>
-        {error && <p className="error-message">{error}</p>}
         <div className="login-link">
           <p>
             Already a member?{' '}

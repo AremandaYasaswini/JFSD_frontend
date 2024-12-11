@@ -52,7 +52,6 @@ function Home() {
             <h3><FontAwesomeIcon icon={faCarrot} /> Farm-Fresh Vegetables</h3>
             <p>Enjoy a variety of seasonal vegetables picked at their peak.</p>
           </div>
-          {/* Updated to reference image from public folder */}
           <div className="feature-card" onClick={() => handleProductNavigation('New Launch')}>
             <img src="/Images/new_launch.jpeg" alt="New Launch" />
             <h3><FontAwesomeIcon icon={faRocket} /> New Launch</h3>

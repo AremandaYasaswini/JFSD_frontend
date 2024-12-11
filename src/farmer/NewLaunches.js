@@ -11,7 +11,7 @@ const NewLaunches = () => {
         const response = await fetch('http://localhost:8080/api/products/New Launch');
         if (response.ok) {
           const data = await response.json();
-          setProducts(data);  // Data now includes the full image URL for "New Launch"
+          setProducts(data);
         } else {
           console.error('Failed to fetch products');
           setProducts([]);
@@ -62,15 +62,15 @@ const NewLaunches = () => {
               <div key={product.id} className="product-item">
                 <div className="product-image">
                   <img
-                    src={product.image}  // Assuming image URL is properly set
+                    src={product.image} 
                     alt={product.name}
-                    width="200"  // Adjust width as needed
-                    height="200" // Adjust height for consistency
+                    width="200"  
+                    height="200" 
                   />
                 </div>
                 <div className="product-info">
                   <p> {product.name}</p>
-                  <p><strong>Price:</strong>{product.price}</p>
+                  <p><strong>Price:</strong>{product.price} / {product.unit}</p>
                 </div>
                 <div className="product-actions">
                   <Link to={`/farmer/update-product/${product.id}`}>

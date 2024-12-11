@@ -1,25 +1,40 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useOrderContext } from './OrderContext';
+import axios from 'axios';
 import '../css/orderSummary.css';
 
 const OrderSummary = () => {
   const location = useLocation();
-  const { product, formData } = location.state || {};
+  const { product, formData, totalPrice } = location.state || {};
   const navigate = useNavigate();
-  const { addOrder } = useOrderContext();
 
   if (!product || !formData) {
     return <div>No order details found. Please go back to the product page.</div>;
   }
 
-  const handlePlaceOrder = () => {
-    const order = { product, formData }; 
+  const handlePlaceOrder = async () => {
+    const order = {
+      productName: product.name,
+      productPrice: product.price,
+      productImage: product.image,
+      customerName: formData.name,
+      customerAddress: formData.address,
+      customerCity: formData.city,
+      customerPostalCode: formData.postalCode,
+      paymentMethod: formData.paymentMethod,
+      quantity: formData.quantity,
+      unit: product.unit,
+      totalPrice: totalPrice, // Include total price in order details
+    };
 
-    addOrder(order); 
-
-    alert('Order placed successfully!');
-    navigate('/orders');
+    try {
+      await axios.post('http://localhost:8080/orders/create', order);
+      alert('Order placed successfully!');
+      navigate('/orders');
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Failed to place order. Please try again.');
+    }
   };
 
   return (
@@ -29,7 +44,9 @@ const OrderSummary = () => {
         <div className="product-info">
           <img src={product.image} alt={product.name} className="product-image" />
           <h3>{product.name}</h3>
-          <p>Price: {product.price}</p>
+          <p>Price: ₹{product.price}</p>
+          <p>Quantity: {formData.quantity} {product.unit}</p>
+          <p>Total Price: ₹{totalPrice}</p> {/* Display Total Price */}
         </div>
         <div className="shipping-info">
           <h4>Shipping Information</h4>
@@ -39,9 +56,7 @@ const OrderSummary = () => {
           <p><strong>Payment Method:</strong> {formData.paymentMethod}</p>
         </div>
       </div>
-      <button className="btn btn-success" onClick={handlePlaceOrder}>
-        Place Order
-      </button>
+      <button className="place-order-btn" onClick={handlePlaceOrder}>Place Order</button>
     </div>
   );
 };

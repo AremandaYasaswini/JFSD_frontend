@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../css/Form.css'; 
-import loginImage from '../Images/login_1.jpeg'; 
+import '../css/Form.css';
+import loginImage from '../Images/login_1.jpeg';
 
-const Login = ({ setRole }) => {  // Receive setRole as a prop
+const Login = ({ setRole }) => { 
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -19,19 +19,21 @@ const Login = ({ setRole }) => {  // Receive setRole as a prop
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/users/login', formData);
+      const response = await axios.post('http://localhost:8080/users/login', formData, { withCredentials: true });
       if (response.status === 200) {
-        alert('Login successful!');
-        const role = response.data;  // Make sure this is the role returned from the backend
+        const role = response.data;  
         const username = formData.email;
         
-        console.log(`Setting role: ${role}`); // Log the role
+        console.log(`Setting role: ${role}`); 
         localStorage.setItem('username', username);
-        localStorage.setItem('role', role);  // Set the role in localStorage
+        localStorage.setItem('role', role);  
 
-        setRole(role);  // Update the role state in App.js
+        setRole(role);  
+        alert('Login successful!');  // Display alert after successful login
 
-        // Navigate based on the role
+        // Dispatch custom event to notify login status change
+        window.dispatchEvent(new Event('loginChange'));
+
         if (role.toUpperCase() === 'ADMIN') {
           navigate('/admin');
         } else if (role.toUpperCase() === 'FARMER') {

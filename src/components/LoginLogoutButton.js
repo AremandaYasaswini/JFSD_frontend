@@ -1,21 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginLogoutButton = () => {
-  const [username, setUsername] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+  // Sync state with session/local storage on load
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
-
-    // Listen for login changes
-    const handleLoginChange = () => {
-      setUsername(localStorage.getItem('username'));
+    const checkSession = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/users/check-session', { withCredentials: true });
+        if (response.status === 200 && response.data.username) {
+          setIsLoggedIn(true);
+          localStorage.setItem('username', response.data.username);
+        } else {
+          setIsLoggedIn(false);
+          localStorage.removeItem('username');
+        }
+      } catch (error) {
+        setIsLoggedIn(false);
+        localStorage.removeItem('username');
+      }
     };
 
+    checkSession();
+
+    // Listen for login/logout changes
+    const handleLoginChange = () => {
+      setIsLoggedIn(!!localStorage.getItem('username'));
+    };
     window.addEventListener('loginChange', handleLoginChange);
 
     return () => {
@@ -23,21 +37,24 @@ const LoginLogoutButton = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('username');
-    setUsername(null);
-    navigate('/login');
+  // Logout handler
+  const handleLogout = async () => {
+    try {
+      await axios.get('http://localhost:8080/users/logout', { withCredentials: true });
+      localStorage.removeItem('username');
+      setIsLoggedIn(false);
+      window.dispatchEvent(new Event('loginChange'));
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
-  if (username) {
-    return (
-      <button className="logout-btn" onClick={handleLogout}>
-        Logout
-      </button>
-    );
-  }
-
-  return (
+  return isLoggedIn ? (
+    <button className="logout-btn" onClick={handleLogout}>
+      Logout
+    </button>
+  ) : (
     <Link to="/login" className="login-btn">
       Login
     </Link>

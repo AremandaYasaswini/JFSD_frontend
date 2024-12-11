@@ -20,7 +20,6 @@ const Navbar = () => {
 
   return (
     <div className="navbar-container">
-      {/* Top Navigation */}
       <nav className="top-nav">
         <div className="logo-container">
           <button className="toggle-button" onClick={toggleSidebar}>☰</button>
@@ -28,13 +27,11 @@ const Navbar = () => {
           <span className="logo-text">HarvestHaven</span>
         </div>
 
-        {/* Display Login or Logout Button */}
         <div className="navbar-right">
           <LoginLogoutButton />
         </div>
       </nav>
 
-      {/* Side Navigation */}
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <button className="close-button" onClick={toggleSidebar}>✖</button>
         <ul>

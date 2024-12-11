@@ -1,22 +1,24 @@
 import React from 'react';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 
-const FarmerHome = () => {
+
+const Farmer = () => {
   return (
-    <Container className="farmer-home mt-5">
+    <Container className="farmer-container mt-5">
       <Row>
         <Col md="12">
-          <h1 className="text-center text-primary mb-4">Welcome, Farmer!</h1>
+          <h1 className="text-center text-success mb-4">Welcome, Farmer!</h1>
+          <p className="text-center text-muted">Manage your products and orders seamlessly.</p>
         </Col>
       </Row>
 
       <Row>
-        <Col md="6">
+        <Col md="4">
           <Card className="shadow-sm mb-4">
             <CardBody>
-              <CardTitle tag="h5" className="text-success">Manage Your Products</CardTitle>
+              <CardTitle tag="h5" className="text-primary">Manage Products</CardTitle>
               <CardText>
-                This is your dashboard where you can manage your products and view orders.
+                Add, update, and monitor your products to ensure inventory is always accurate.
               </CardText>
               <Button color="primary" block>
                 Go to Product Management
@@ -25,15 +27,29 @@ const FarmerHome = () => {
           </Card>
         </Col>
 
-        <Col md="6">
+        <Col md="4">
           <Card className="shadow-sm mb-4">
             <CardBody>
-              <CardTitle tag="h5" className="text-info">Upcoming Features</CardTitle>
+              <CardTitle tag="h5" className="text-warning">View Orders</CardTitle>
               <CardText>
-                Stay tuned for more options coming soon. We are working on additional tools to help you grow your business!
+                Check and fulfill orders placed by buyers. Stay updated on your transactions.
               </CardText>
-              <Button color="secondary" block>
-                Learn More
+              <Button color="warning" block>
+                Go to Order Management
+              </Button>
+            </CardBody>
+          </Card>
+        </Col>
+
+        <Col md="4">
+          <Card className="shadow-sm mb-4">
+            <CardBody>
+              <CardTitle tag="h5" className="text-info">Account Settings</CardTitle>
+              <CardText>
+                Update your profile, payment details, and preferences.
+              </CardText>
+              <Button color="info" block>
+                Go to Account Settings
               </Button>
             </CardBody>
           </Card>
@@ -43,4 +59,4 @@ const FarmerHome = () => {
   );
 };
 
-export default FarmerHome;
+export default Farmer;

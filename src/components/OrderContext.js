@@ -6,7 +6,7 @@ export const OrderProvider = ({ children }) => {
   const [orders, setOrders] = useState([]); 
 
   const addOrder = (newOrder) => {
-    // Ensure newOrder is an object
+    
     if (typeof newOrder === 'object' && newOrder !== null) {
       setOrders((prevOrders) => [...prevOrders, newOrder]); 
     } else {

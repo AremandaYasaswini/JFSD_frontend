@@ -28,8 +28,8 @@ const FarmerNavbar = () => {
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <button className="close-button" onClick={toggleSidebar}>✖</button>
         <ul>
-          <li onClick={closeSidebar}><Link to="/farmer/">Home</Link></li>
-          <li onClick={closeSidebar}><Link to="/farmer/dashboard">Dashboard</Link></li> 
+          <li onClick={closeSidebar}><Link to="/admin/">Home</Link></li>
+          <li onClick={closeSidebar}><Link to="/admin/dashboard">Dashboard</Link></li> 
           <li onClick={closeSidebar}><Link to="/farmer/add-product">Add New Product</Link></li>
           <li onClick={closeSidebar}><Link to="/farmer/new-launches">View New Launches</Link></li>
           <li onClick={closeSidebar}><Link to="/farmer/orders?status=pending">View Orders</Link></li>

@@ -1,16 +1,33 @@
-import React from 'react';
-import { useOrderContext } from './OrderContext';
+import React, { useEffect, useState } from 'react';
 import '../css/orders.css';
 
 const Orders = () => {
-  const { orders, updateOrders } = useOrderContext();
+  const [orders, setOrders] = useState([]);
 
-  const handleCancelOrder = (index) => {
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/orders');
+      const data = await response.json();
+      setOrders(data);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
+  const handleCancelOrder = async (id) => {
     const confirmCancel = window.confirm("Are you sure you want to cancel this order?");
     if (confirmCancel) {
-      const updatedOrders = orders.filter((_, i) => i !== index);
-      updateOrders(updatedOrders);
-      console.log("Order has been canceled successfully.");
+      try {
+        await fetch(`http://localhost:8080/orders/${id}`, { method: 'DELETE' });
+        fetchOrders(); // Refresh orders after deletion
+        console.log("Order has been canceled successfully.");
+      } catch (error) {
+        console.error("Error canceling order:", error);
+      }
     }
   };
 
@@ -18,31 +35,24 @@ const Orders = () => {
     <div className="orders-container">
       <h2>Your Orders</h2>
       <div className="orders-grid">
-        {Array.isArray(orders) && orders.length === 0 ? (
+        {orders.length === 0 ? (
           <p>No orders placed yet.</p>
         ) : (
-          Array.isArray(orders) ? (
-            orders.map((order, index) => {
-              if (!order || !order.product || !order.formData) {
-                return <p key={index}>Order data is incomplete.</p>;
-              }
+          orders.map((order) => {
+            const { id, productName, productPrice, productImage, quantity, unit } = order;
 
-              const { image, name, price } = order.product;
-
-              return (
-                <div key={index} className="order-item">
-                  <img src={image} alt={name} className="order-image" />
-                  <h3>{name}</h3>
-                  <p>Price: ₹{price}</p>
-                  <button className="btn-cancel" onClick={() => handleCancelOrder(index)}>
-                    Cancel Order
-                  </button>
-                </div>
-              );
-            })
-          ) : (
-            <p>Error: Orders data is not available.</p>
-          )
+            return (
+              <div key={id} className="order-item">
+                <img src={productImage || 'default-image-url'} alt={productName || 'Product Image'} className="order-image" />
+                <h3>{productName || 'Unknown Product'}</h3>
+                <p>Price: ₹{productPrice || 'N/A'}</p>
+                <p>Quantity: {quantity} {unit}</p>
+                <button className="btn-cancel" onClick={() => handleCancelOrder(id)}>
+                  Cancel Order
+                </button>
+              </div>
+            );
+          })
         )}
       </div>
     </div>

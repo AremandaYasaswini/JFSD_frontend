@@ -4,12 +4,14 @@ const AddProduct = () => {
   const [product, setProduct] = useState({
     name: '',
     price: '',
-    category: 'New Launch', // Default category is New Launch
+    category: 'New Launch', 
     image: null,
+    quantity: 10,  // Default value set to 10
+    unit: 'kg',    // Default value set to 'kg'
   });
 
-  const [imagePath, setImagePath] = useState(''); // Store image file path for preview
-  const [loading, setLoading] = useState(false); // To show loading state during upload
+  const [imagePath, setImagePath] = useState(''); 
+  const [loading, setLoading] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,19 +21,16 @@ const AddProduct = () => {
     }));
   };
 
-  // Handle file change and image upload
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     
     if (!file) return;
 
     setLoading(true);
-
-    // Upload the image to the backend and get the filename
     const formData = new FormData();
     formData.append("image", file);
 
-    console.log("Uploading file:", file.name); // Log the uploaded file name
+    console.log("Uploading file:", file.name); 
 
     try {
       const response = await fetch('http://localhost:8080/api/products/upload', {
@@ -40,12 +39,12 @@ const AddProduct = () => {
       });
 
       if (response.ok) {
-        const filename = await response.text(); // Get the filename from the backend
+        const filename = await response.text(); 
         setProduct((prevProduct) => ({
           ...prevProduct,
-          image: filename, // Store the filename
+          image: filename, 
         }));
-        setImagePath(URL.createObjectURL(file)); // Set the image preview
+        setImagePath(URL.createObjectURL(file)); 
 
         console.log("File uploaded successfully, filename:", filename);
       } else {
@@ -62,7 +61,7 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!product.name || !product.price || !product.image) {
+    if (!product.name || !product.price || !product.image || !product.quantity || !product.unit) {
       alert("Please fill out all fields and upload an image.");
       return;
     }
@@ -70,8 +69,10 @@ const AddProduct = () => {
     const formData = {
       name: product.name,
       price: product.price,
-      category: product.category, // Default is New Launch
-      image: product.image, // Send only the filename to the backend
+      category: product.category, 
+      image: product.image, 
+      quantity: product.quantity, // Send quantity
+      unit: product.unit,         // Send unit
     };
 
     console.log("Form data before submission:", formData);
@@ -85,18 +86,16 @@ const AddProduct = () => {
 
       if (response.ok) {
         alert('Product added successfully!');
-        
-        // Save the product to localStorage after successful submission
         const existingProducts = JSON.parse(localStorage.getItem('newLaunches')) || [];
         existingProducts.push(formData);
         localStorage.setItem('newLaunches', JSON.stringify(existingProducts));
-
-        // Clear the form
         setProduct({
           name: '',
           price: '',
           category: 'New Launch',
           image: null,
+          quantity: 10,  // Reset quantity to default 10
+          unit: 'kg',    // Reset unit to default 'kg'
         });
         setImagePath('');
       } else {
@@ -132,12 +131,30 @@ const AddProduct = () => {
           />
         </div>
         <div>
+          <label>Quantity:</label>
+          <input
+            type="number"
+            name="quantity"
+            value={product.quantity}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Unit(litre,kg,gm):</label>
+          <input
+            type="text"
+            name="unit"
+            value={product.unit}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
           <label>Image:</label>
           <input
             type="file"
             name="image"
             onChange={handleFileChange}
-            disabled={loading} // Disable while uploading
+            disabled={loading} 
           />
           {loading && <p>Uploading...</p>}
           {imagePath && !loading && (

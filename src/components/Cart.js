@@ -1,21 +1,22 @@
+// Cart.js
 import React from 'react';
 import { useCart } from './CartContext';
+import { useNavigate } from 'react-router-dom';
 import '../css/cart.css';
 
 const Cart = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
+  const navigate = useNavigate();
 
-  // Handle increase in quantity
   const handleIncrease = (productId) => {
-    const product = cart.find(item => item.id === productId);
+    const product = cart.find((item) => item.id === productId);
     if (product) {
       updateQuantity(productId, product.quantity + 1);
     }
   };
 
-  // Handle decrease in quantity
   const handleDecrease = (productId) => {
-    const product = cart.find(item => item.id === productId);
+    const product = cart.find((item) => item.id === productId);
     if (product && product.quantity > 1) {
       updateQuantity(productId, product.quantity - 1);
     } else {
@@ -23,41 +24,51 @@ const Cart = () => {
     }
   };
 
-  // Function to calculate total price of the entire cart
   const calculateTotal = () => {
     return cart.reduce((acc, item) => {
-      const priceNum = parseFloat(item.price.replace(/[^\d.-]/g, '')); // Remove ₹ symbol and convert to number
-      return acc + (priceNum * item.quantity);
+      const priceNum = parseFloat(item.price.replace(/[^\d.-]/g, ''));
+      return acc + priceNum * item.quantity;
     }, 0);
   };
 
-  const total = calculateTotal(); // Get the total price of the cart
+  const total = calculateTotal();
+
+  const handleCheckout = () => {
+    if (cart.length === 0) {
+      alert('Your cart is empty. Please add items to proceed.');
+      return;
+    }
+    navigate('/cartcheckout', { state: { cart, total } });
+  };
 
   return (
     <div className="cart-container">
-      <h1>Your Cart</h1>
+      <h1 className="cart-title">Your Shopping Cart</h1>
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p className="cart-empty">Your cart is empty.</p>
       ) : (
         <div className="product-list">
           {cart.map((item) => (
             <div key={item.id} className="product-item">
               <img src={item.image} alt={item.name} className="product-image" />
-              <h2>{item.name}</h2>
-              <p>Price: ₹{item.price}</p>
-              <div className="quantity-control">
-                <button onClick={() => handleDecrease(item.id)}>-</button>
-                <span>{item.quantity}</span>
-                <button onClick={() => handleIncrease(item.id)}>+</button>
+              <div className="product-details">
+                <h2 className="product-name">{item.name}</h2>
+                <p className="product-price">Price: ₹{item.price}</p>
+                <div className="quantity-control">
+                  <button className="quantity-btn" onClick={() => handleDecrease(item.id)}>-</button>
+                  <span className="quantity">{item.quantity}</span>
+                  <button className="quantity-btn" onClick={() => handleIncrease(item.id)}>+</button>
+                </div>
+                <button className="remove-btn" onClick={() => removeFromCart(item)}>Remove</button>
               </div>
-              <button onClick={() => removeFromCart(item)}>Remove</button>
             </div>
           ))}
         </div>
       )}
       <div className="total">
-        <h3>Total: ₹{total.toFixed(2)}</h3> {/* Display the total with two decimal places */}
+        <h3>Total: ₹{total.toFixed(2)}</h3>
       </div>
+      {/* <button className="checkout-btn" onClick={handleCheckout}>Proceed to Checkout</button> */}
     </div>
   );
 };

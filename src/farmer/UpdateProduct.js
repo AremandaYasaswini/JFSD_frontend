@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const UpdateProduct = () => {
-  const { productId } = useParams(); // Get the product ID from the URL
+  const { productId } = useParams();
   const navigate = useNavigate();
   
   const [product, setProduct] = useState({
     name: '',
     price: '',
-    image: '', // Add image to the state to store the image path
+    image: '',
+    quantity: '',  // Add quantity
+    unit: '',      // Add unit
   });
 
-  const [loading, setLoading] = useState(false); // To show loading state
+  const [loading, setLoading] = useState(false);
 
-  // Fetch the product data when the page loads
   useEffect(() => {
     const fetchProduct = async () => {
         try {
@@ -21,7 +22,7 @@ const UpdateProduct = () => {
             const data = await response.json();
             if (response.ok) {
                 console.log('Fetched product:', data);
-                setProduct(data);  // Update state with fetched product
+                setProduct(data); 
             } else {
                 console.error('Product not found or failed to fetch');
                 alert('Product not found or failed to fetch.');
@@ -33,7 +34,7 @@ const UpdateProduct = () => {
     };
 
     fetchProduct();
-  }, [productId]);  // This hook runs when the productId changes
+  }, [productId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +47,7 @@ const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!product.name || !product.price) {
+    if (!product.name || !product.price || !product.quantity || !product.unit) {
       alert("Please fill out all fields.");
       return;
     }
@@ -54,7 +55,9 @@ const UpdateProduct = () => {
     const formData = {
       name: product.name,
       price: product.price,
-      image: product.image,  // Include image path in the request to ensure it doesn't get deleted
+      image: product.image,  
+      quantity: product.quantity, // Include quantity
+      unit: product.unit,         // Include unit
     };
 
     try {
@@ -66,7 +69,7 @@ const UpdateProduct = () => {
 
       if (response.ok) {
         alert('Product updated successfully!');
-        navigate('/farmer/new-launches');  // Redirect to the new launches page after update
+        navigate('/farmer/new-launches'); 
       } else {
         const data = await response.text();
         alert(`Error: ${data}`);
@@ -99,8 +102,25 @@ const UpdateProduct = () => {
             onChange={handleChange}
           />
         </div>
+        <div>
+          <label>Quantity:</label>
+          <input
+            type="number"
+            name="quantity"
+            value={product.quantity}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Unit:</label>
+          <input
+            type="text"
+            name="unit"
+            value={product.unit}
+            onChange={handleChange}
+          />
+        </div>
 
-        {/* Show the previous image */}
         {product.image && (
           <div>
             <h4>Product Image:</h4>

@@ -16,7 +16,7 @@ const ProductList = () => {
       try {
         const response = await fetch(`http://localhost:8080/api/products/${category}`);
         const data = await response.json();
-        console.log('Fetched data:', data);  // Log the data to check its structure
+        console.log('Fetched data:', data); 
         
         if (Array.isArray(data)) {
           setProducts(data);
@@ -59,13 +59,25 @@ const ProductList = () => {
         {products.map((product, index) => {
           const imageUrl = process.env.PUBLIC_URL + product.image;
 
+          // Determine the display unit based on category or product
+          let unit = '';
+          if (category === 'vegetables') {
+            unit = 'kg'; // for vegetables like Tomato
+          } else if (category === 'leafy-vegetables') {
+            unit = 'bunch'; // for leafy vegetables like Methi
+          } else {
+            unit = 'per unit'; // default
+          }
+
           return (
             <div key={index} className="fixed-card">
               <div className="card h-100">
                 <img src={imageUrl} className="card-img-top product-image" alt={product.name} />
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title product-name">{product.name}</h5>
-                  <p className="card-text product-price">Price: {product.price}</p>
+                  <p className="card-text product-price">
+                    Price: {product.price} / {product.unit}
+                  </p>
                   <div className="button-container">
                     <button
                       className="btn btn-primary me-2"

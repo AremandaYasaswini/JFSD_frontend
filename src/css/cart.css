@@ -1,3 +1,12 @@
+/* Total cost centered */
+.total {
+  text-align: center; /* Center align text */
+  margin-top: 20px; /* Add spacing from the product list */
+  font-size: 1.5em; /* Increase font size */
+  font-weight: bold; /* Make text bold */
+  color: #333; /* Set text color */
+}
+
 /* Cart container */
 .cart-container {
   padding: 30px;
@@ -104,13 +113,13 @@ h1 {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .product-item {
-      width: calc(50% - 20px); /* Two cards per row for tablets */
+    width: calc(50% - 20px); /* Two cards per row for tablets */
   }
 }
 
 @media (max-width: 480px) {
   .product-item {
-      width: 100%; /* Full width for mobile */
+    width: 100%; /* Full width for mobile */
   }
 }
 /* Quantity Control Styles */
@@ -118,29 +127,46 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Add space between buttons and quantity */
-  margin-top: 10px; /* Add some spacing from other elements */
+  gap: 15px; /* Increase spacing between buttons and quantity */
+  margin-top: 15px; /* Add some spacing from other elements */
 }
 
+/* Button Styles for quantity control */
 .quantity-control button {
   background-color: #4CAF50; /* Green background */
   color: white; /* White text */
   border: none; /* Remove border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 5px 10px;
-  font-size: 16px;
+  border-radius: 50%; /* Circular buttons */
+  width: 40px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height */
+  font-size: 1.2em; /* Increase font size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transition for all effects */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow */
 }
 
 .quantity-control button:hover {
   background-color: #45a049; /* Slightly darker green on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  transform: scale(1.05); /* Slightly scale button on hover */
 }
 
+.quantity-control button:active {
+  background-color: #388e3c; /* Even darker green when pressed */
+  transform: scale(1); /* Reset scaling when button is pressed */
+}
+
+/* Quantity display */
 .quantity-control span {
-  font-size: 18px;
+  font-size: 1.5em; /* Larger font size for better readability */
   font-weight: bold;
   color: #333;
-  padding: 0 10px; /* Space around the quantity number */
+  padding: 0 15px; /* Space around the quantity number */
+  background-color: #f5f5f5; /* Light background to contrast the buttons */
+  border-radius: 5px; /* Rounded corners for the quantity display */
+  width: 40px; /* Fixed width to align with the buttons */
+  text-align: center; /* Center the quantity number */
 }

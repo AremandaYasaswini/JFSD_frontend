@@ -10,7 +10,7 @@ const NewLaunches = () => {
         const response = await fetch('http://localhost:8080/api/products/New Launch');
         if (response.ok) {
           const data = await response.json();
-          setProducts(data);  // Data now includes the full image URL for "New Launch"
+          setProducts(data); 
         } else {
           console.error('Failed to fetch products');
           setProducts([]);
@@ -37,13 +37,13 @@ const NewLaunches = () => {
             <p>No products found in the New Launch category.</p>
           ) : (
             products.map((product, index) => {
-              // If imageUrl exists, use it; otherwise, use the image filename
+        
               const imageUrl = product.imageUrl || `http://localhost:8080/uploads/${product.image}`;
 
               return (
                 <div key={index} className="product-item">
                   <img
-                    src={imageUrl}  // Use the full image URL if present
+                    src={imageUrl}  
                     alt={product.name}
                     width="100"
                   />
