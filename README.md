@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # JFSD_SDP - Harvest Haven
 
@@ -64,3 +65,6 @@ If you would like to contribute to this project, please fork the repository and 
 ## License
 
 This project is licensed under the MIT License.
+=======
+# JFSD
+>>>>>>> aa821e2c4dc18527d437a033d7fe0bc0daeff444
