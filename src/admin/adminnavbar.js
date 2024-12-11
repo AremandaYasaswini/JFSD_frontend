@@ -4,7 +4,7 @@ import '../css/Navbar.css';
 import logoImage from '../Images/logo.png'; 
 import LoginLogoutButton from '../components/LoginLogoutButton';
 
-const FarmerNavbar = () => {
+const AdminNavbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(prev => !prev);
@@ -46,4 +46,4 @@ const FarmerNavbar = () => {
   );
 };
 
-export default FarmerNavbar;
+export default AdminNavbar;

@@ -19,35 +19,36 @@ const Login = ({ setRole }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/users/login', formData, { withCredentials: true });
-      if (response.status === 200) {
-        const role = response.data;  
-        const username = formData.email;
-        
-        console.log(`Setting role: ${role}`); 
-        localStorage.setItem('username', username);
-        localStorage.setItem('role', role);  
+        const response = await axios.post('http://localhost:8080/users/login', formData, { withCredentials: true });
+        if (response.status === 200) {
+            const role = response.data;
+            const username = formData.email;
 
-        setRole(role);  
-        alert('Login successful!');  // Display alert after successful login
+            console.log(`Setting role: ${role}`);
+            localStorage.setItem('username', username);
+            localStorage.setItem('role', role);
 
-        // Dispatch custom event to notify login status change
-        window.dispatchEvent(new Event('loginChange'));
+            setRole(role);
+            alert('Login successful!');  // Display alert after successful login
 
-        if (role.toUpperCase() === 'ADMIN') {
-          navigate('/admin');
-        } else if (role.toUpperCase() === 'FARMER') {
-          navigate('/farmer');
-        } else if (role.toUpperCase() === 'BUYER') {
-          navigate('/');
-        } else {
-          navigate('/');
+            // Dispatch custom event to notify login status change
+            window.dispatchEvent(new Event('loginChange'));
+
+            if (role.toUpperCase() === 'ADMIN') {
+                navigate('/admin');
+            } else if (role.toUpperCase() === 'FARMER') {
+                navigate('/farmer');
+            } else if (role.toUpperCase() === 'BUYER') {
+                navigate('/');
+            } else {
+                navigate('/');
+            }
         }
-      }
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
+        setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
     }
-  };
+};
+
   
   return (
     <div className="login-container">
